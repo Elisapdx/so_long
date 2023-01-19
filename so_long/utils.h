@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
+/*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:41:26 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/18 11:52:22 by elisa            ###   ########.fr       */
+/*   Updated: 2023/01/18 17:54:01 by epraduro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct s_game
 	int			count_c;
 	int			count_e;
 	int			line_count;
+	int			colone_count;
 	int			limit_x;
 	int			old_x;
 	int			old_y;
@@ -94,8 +95,6 @@ typedef struct s_game
 /* read_map.c */
 
 void		null_error(char *str);
-static int	linecount_map(char *file);
-static char	**check_alloc_map(char *file);
 char		**read_map(char *file, t_game *game);
 
 /* error.c */

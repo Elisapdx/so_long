@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
+/*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:41:08 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/15 18:03:48 by elisa            ###   ########.fr       */
+/*   Updated: 2023/01/18 17:53:36 by epraduro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	null_error(char *str)
 	exit(1);
 }
 
-static int	linecount_map(char *file)
+static int	linecount_map(char *file, t_game *game)
 {
 	int		line_count;
 	int		fd;
@@ -48,12 +48,13 @@ static int	linecount_map(char *file)
 }
 
 /* Allocates memory */
-static char	**check_alloc_map(char *file)
+static char	**check_alloc_map(char *file, t_game *game)
 {
 	char	**map;
 	int		line_count;
 
-	line_count = linecount_map(file);
+	line_count = linecount_map(file, game);
+	game->line_count = line_count;
 	if (line_count <= 0)
 		null_error("open or reading error, the file may not exist");
 	map = malloc(sizeof(char *) * line_count + 1);
@@ -69,18 +70,17 @@ char	**read_map(char *file, t_game *game)
 	int		fd;
 	int		i;
 
-	map = check_alloc_map(file);
+	map = check_alloc_map(file, game);
 	if (map == NULL)
 		return (NULL);
 	fd = open(file, O_RDONLY);
 	i = 0;
-	map[i++] = get_next_line(fd);
-	while (map[i] != NULL)
+	printf("line = %d\n", game->line_count);
+	while (i < game->line_count)
 	{
 		map[i] = get_next_line(fd);
 		i++;
 	}
-	game->line_count = i - 2;
 	close(fd);
 	return (map);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: elisa <elisa@student.42.fr>                +#+  +:+       +#+         #
+#    By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/04 11:24:15 by elisa             #+#    #+#              #
-#    Updated: 2023/01/16 17:57:30 by elisa            ###   ########.fr        #
+#    Updated: 2023/01/18 17:22:23 by epraduro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,11 +20,10 @@ OBJS=$(SRCS:.c=.o)
 all:$(NAME)
 
 %.o: %.c
-	gcc $(CFLAGS) -c $< -o $@
+	gcc $(CFLAGS) -Imlx -c $< -o $@
 
 $(NAME):$(OBJS)
-	gcc $(CFLAGS) $(OBJS) -framework OpenGL -framework AppKit libmlx.a -o $(NAME)
-
+	gcc $(CFLAGS) $(OBJS) -lmlx -framework OpenGL -framework AppKit -o $(NAME) 
 clean:
 	rm -f $(OBJ) $(OBJS_LIB) $(OBJS_BONUS)
 

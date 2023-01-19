@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
+/*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:49:31 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/16 15:26:59 by elisa            ###   ########.fr       */
+/*   Updated: 2023/01/18 18:00:01 by epraduro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	check_rect(t_game *game)
 
 	i = 0;
 	len = ft_strlen(game->map[i++]);
-	while (i < game->line_count)
+	while (i < game->line_count - 1)
 		if (len != ft_strlen(game->map[i++]))
 			return (0);
 	return (1);
@@ -72,7 +72,8 @@ int	checker_line_next(t_game *game)
 
 	i = 1;
 	len = ft_strlen(game->map[0]);
-	if (checker_map(game, 0) != 1 || checker_map(game, game->line_count) != 1)
+	if (checker_map(game, 0) != 1
+		|| checker_map(game, game->line_count - 1) != 1)
 		return (0);
 	while (i < game->line_count)
 	{
@@ -81,6 +82,7 @@ int	checker_line_next(t_game *game)
 		i++;
 	}
 	game->limit_x = len - 2;
+	game->colone_count = len - 1;
 	return (1);
 }
 
