@@ -6,7 +6,7 @@
 /*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:49:31 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/18 18:00:01 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/01/19 15:12:52 by epraduro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ int	error_map(t_game *game)
 		j = 0;
 		i++;
 	}
-	if (!game->count_p || game->count_e || game->count_c)
+	if (!(game->count_p && game->count_e && game->count_c))
+		return (0);
+	else if (game->count_p > 1 || game->count_e > 1)
 		return (0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:41:08 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/18 17:53:36 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/01/19 14:51:52 by epraduro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ char	**read_map(char *file, t_game *game)
 		return (NULL);
 	fd = open(file, O_RDONLY);
 	i = 0;
-	printf("line = %d\n", game->line_count);
 	while (i < game->line_count)
 	{
 		map[i] = get_next_line(fd);

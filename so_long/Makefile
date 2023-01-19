@@ -6,12 +6,12 @@
 #    By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/04 11:24:15 by elisa             #+#    #+#              #
-#    Updated: 2023/01/18 17:22:23 by epraduro         ###   ########.fr        #
+#    Updated: 2023/01/19 15:25:52 by epraduro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS= main.c image.c read_map.c error.c window.c \
-	gnl/get_next_line_solong.c gnl/get_next_line_utils_solong.c move.c
+SRCS= main.c image.c read_map.c error.c move.c \
+	gnl/get_next_line_solong.c gnl/get_next_line_utils_solong.c
 OBJ=$(SRCS:.c=.o)
 
 NAME= so_long

@@ -6,7 +6,7 @@
 /*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:41:26 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/18 17:54:01 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:01:24 by epraduro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,14 @@ typedef struct s_game
 	int			count_p;
 	int			count_c;
 	int			count_e;
+	int			collect;
+	int			stock_move;
 	int			line_count;
 	int			colone_count;
 	int			limit_x;
 	int			old_x;
 	int			old_y;
+	int			nb_move;
 	t_window	window;
 	t_image		sprite;
 	t_vector	sprite_position;
@@ -95,6 +98,8 @@ typedef struct s_game
 /* read_map.c */
 
 void		null_error(char *str);
+static int	linecount_map(char *file, t_game *game);
+static char	**check_alloc_map(char *file, t_game *game);
 char		**read_map(char *file, t_game *game);
 
 /* error.c */
