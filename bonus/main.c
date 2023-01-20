@@ -6,7 +6,7 @@
 /*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:20:14 by epraduro          #+#    #+#             */
-/*   Updated: 2023/01/19 16:02:04 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/01/20 14:08:46 by epraduro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int argc, char **argv)
 	game.map = read_map(argv[1], &game);
 	if (!check_rect(&game) || !checker_line_next(&game))
 		return (error("map invalid\n"));
-	if (!checker_map_poss(&game))
+	if (!checker_map_poss(&game) || !resolver_map(&game))
 		return (error("map impossible, inacesssible object"));
 	if (!error_map(&game))
 		return (error("problem with objects in map"));

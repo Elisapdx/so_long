@@ -6,7 +6,7 @@
 /*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:49:31 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/19 15:12:52 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/01/20 14:08:30 by epraduro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	error_map(t_game *game)
 	i = 0;
 	while (game->map[i])
 	{
+		j = 0;
 		while (game->map[i][j])
 		{
 			if (game->map[i][j] == 'P')
@@ -30,7 +31,6 @@ int	error_map(t_game *game)
 				game->count_c++;
 			j++;
 		}
-		j = 0;
 		i++;
 	}
 	if (!(game->count_p && game->count_e && game->count_c))

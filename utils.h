@@ -6,7 +6,7 @@
 /*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:41:26 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/19 16:01:24 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/01/20 18:06:12 by epraduro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ typedef struct s_game
 	int			old_x;
 	int			old_y;
 	int			nb_move;
+	int			x_cop;
+	int			y_cop;
 	t_window	window;
 	t_image		sprite;
 	t_vector	sprite_position;
@@ -118,10 +120,6 @@ void		put_img_to_window(t_game *game, t_image image, int x, int y);
 void		load_img(t_game *game);
 void		load_map(t_game *game);
 
-/* window.c */
-
-t_window	new_window(t_game *game, int widht, int height, char *name);
-
 /* move.c */
 
 void		move(t_game *game, int x_inc, int y_inc);
@@ -129,9 +127,20 @@ void		move_player(t_game *game, int x_inc, int y_inc);
 int			key_hook(int keycode, void *game);
 int			exit_window(t_game *game);
 
+/* error_resolver.c */
+
+int			free_double_tab(char **tab, int ret);
+char		*ft_strdup(const char *s1);
+char		**copy_map(t_game *game);
+int			resolver_map(t_game *game);
+int			path_poss(t_game *game, char **map_cop, int x, int y);
+
 /* main.c */
 
+t_window	new_window(t_game *game, int widht, int height, char *name);
 int			error(char *str);
+int			exit_window(t_game *game);
 void		start_game(char *fichier, t_game *game);
+int			main(int argc, char **argv);
 
 #endif

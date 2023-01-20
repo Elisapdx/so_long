@@ -6,7 +6,7 @@
 /*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 16:28:29 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/19 18:06:54 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:19:34 by epraduro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,31 +54,37 @@ void	move_player(t_game *game, int x_inc, int y_inc)
 	put_img_to_window(game, game->bdd.floor, old_x * 40, old_y * 40);
 }
 
+void	exit_test(int coin, int nb_coin)
+{
+	if (coin == nb_coin)
+	{
+		write(1, "Vous êtes sorti du jeu\n", 25);
+		exit(0);
+	}
+	else
+		write(1, "Pas assez de coins pour fuir !\n", 32);
+}
+
 void	move(t_game *game, int x_inc, int y_inc)
 {
 	int	stock_move;
 
 	stock_move = game->map[game->player.pos_y + y_inc]
 	[game->player.pos_x + x_inc];
-	if (game->player.pos_x + x_inc > 0
-		&& game->player.pos_x + x_inc < game->limit_x
-		&& game->player.pos_y + y_inc > 0
+	if (game->player.pos_x + x_inc > 0 && game->player.pos_x
+		+ x_inc < game->limit_x && game->player.pos_y + y_inc > 0
 		&& game->player.pos_y + y_inc < game->line_count)
 	{
 		if (stock_move == 'C')
+		{
+			game->map[game->player.pos_y
+				+ y_inc][game->player.pos_x + x_inc] = '0';
 			game->collect++;
+		}
 		if (stock_move != '1' && stock_move != 'E')
 			move_player(game, x_inc, y_inc);
 		if (stock_move == 'E')
-		{
-			if (game->collect == game->count_c)
-			{
-				write(1, "Vous êtes sorti du jeu\n", 25);
-				exit(0);
-			}
-			else
-				write(1, "Pas assez de coins pour fuir !\n", 32);
-		}
+			exit_test(game->collect, game->count_c);
 	}
 }
 
@@ -105,11 +111,4 @@ int	key_hook(int keycode, void *game)
 		exit(0);
 	}
 	return (1);
-}
-
-int	exit_window(t_game *game)
-{
-	mlx_destroy_window(game->mlx, game->window.reference);
-	write(1, "Vous avez fermé la fenêtre du jeu!\n", 38);
-	exit(0);
 }
