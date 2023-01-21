@@ -6,7 +6,7 @@
 /*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 19:07:31 by epraduro          #+#    #+#             */
-/*   Updated: 2023/01/20 14:08:34 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/01/21 11:18:20 by epraduro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	free_double_tab(char **tab, int ret)
 	while (tab[++i])
 		free(tab[i]);
 	free(tab);
-	return (ret);	
+	tab = NULL;
+	return (ret);
 }
 
 char	*ft_strdup(const char *s1)
@@ -60,6 +61,7 @@ int	resolver_map(t_game *game)
 
 	game->x_cop = 0;
 	game->y_cop = 0;
+	map_cop = NULL;
 	while (game->map[game->y_cop][game->x_cop])
 	{
 		if (game->map[game->y_cop][game->x_cop] == 'C'
@@ -68,6 +70,7 @@ int	resolver_map(t_game *game)
 			map_cop = copy_map(game);
 			if (!path_poss(game, map_cop, game->x_cop, game->y_cop))
 				return (free_double_tab(map_cop, 0));
+			free_double_tab(map_cop, 0);
 		}
 		else if (game->map[game->y_cop][game->x_cop] == '\n')
 		{
@@ -76,7 +79,7 @@ int	resolver_map(t_game *game)
 		}
 		game->x_cop++;
 	}
-	return (free_double_tab(map_cop, 1));
+	return (1);
 }
 
 int	path_poss(t_game *game, char **map_cop, int x, int y)

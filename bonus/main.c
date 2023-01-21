@@ -6,12 +6,11 @@
 /*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:20:14 by epraduro          #+#    #+#             */
-/*   Updated: 2023/01/20 14:08:46 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/01/21 17:04:09 by epraduro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-
 t_window	new_window(t_game *game, int widht, int height, char *name)
 {
 	t_window	window;
@@ -28,6 +27,13 @@ int	error(char *str)
 	while (str[++i])
 		write(1, &str[i], 1);
 	return (1);
+}
+
+int	exit_window(t_game *game)
+{
+	mlx_destroy_window(game->mlx, game->window.reference);
+	write(1, "Vous avez fermé la fenêtre du jeu!\n", 38);
+	exit(0);
 }
 
 void	start_game(char *fichier, t_game *game)
@@ -53,7 +59,7 @@ int	main(int argc, char **argv)
 	if (!check_rect(&game) || !checker_line_next(&game))
 		return (error("map invalid\n"));
 	if (!checker_map_poss(&game) || !resolver_map(&game))
-		return (error("map impossible, inacesssible object"));
+		return (error("map invalid ou inacesssible object"));
 	if (!error_map(&game))
 		return (error("problem with objects in map"));
 	start_game(argv[1], &game);

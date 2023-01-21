@@ -6,10 +6,11 @@
 /*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:41:15 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/20 13:48:13 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/01/21 17:26:06 by epraduro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "utils.h"
 #include "utils.h"
 
 void	set_player(t_game *game, int x, int y)
@@ -38,11 +39,13 @@ void	put_img_to_window(t_game *game, t_image image, int x, int y)
 
 void	load_img(t_game *game)
 {
-	game->bdd.player = ft_new_sprite(game->mlx, "./image_xpm/pacman.xpm");
+	game->bdd.player = ft_new_sprite(game->mlx, "./image_xpm/pacman_l.xpm");
+	game->bdd.player_l = ft_new_sprite(game->mlx, "./image_xpm/pacman_l.xpm");
+	game->bdd.player_r = ft_new_sprite(game->mlx, "./image_xpm/pacman_r.xpm");
 	game->bdd.floor = ft_new_sprite(game->mlx, "./image_xpm/floor.xpm");
 	game->bdd.wall = ft_new_sprite(game->mlx, "./image_xpm/wall.xpm");
 	game->bdd.coin = ft_new_sprite(game->mlx, "./image_xpm/coin.xpm");
-	game->bdd.enemy = ft_new_sprite(game->mlx, "./image_xpm/ghost.xpm");
+	game->bdd.monster = ft_new_sprite(game->mlx, "./image_xpm/monster.xpm");
 	game->bdd.exit = ft_new_sprite(game->mlx, "./image_xpm/exit.xpm");
 }
 
@@ -65,6 +68,8 @@ void	load_map(t_game *game)
 				put_img_to_window(game, game->bdd.coin, j * 40, i * 40);
 			else if (game->map[i][j] == 'P')
 				set_player(game, j, i);
+			else if (game->map[i][j] == 'M')
+				put_img_to_window(game, game->bdd.monster, j * 40, i * 40);
 			else if (game->map[i][j] == 'E')
 			{
 				put_img_to_window(game, game->bdd.floor, j * 40, i * 40);

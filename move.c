@@ -6,7 +6,7 @@
 /*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 16:28:29 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/20 17:19:34 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/01/21 16:43:43 by epraduro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	move_player(t_game *game, int x_inc, int y_inc)
 	int	old_y;
 
 	game->nb_move++;
-	write(1, "nombre de pas du joueur :", 26);
+	write(1, "Nombre de pas du joueur: ", 26);
 	ft_putnbr_fd(game->nb_move, 1);
 	write(1, "\n", 1);
 	old_x = game->player.pos_x;
@@ -54,7 +54,7 @@ void	move_player(t_game *game, int x_inc, int y_inc)
 	put_img_to_window(game, game->bdd.floor, old_x * 40, old_y * 40);
 }
 
-void	exit_test(int coin, int nb_coin)
+void	exit_wwin(int coin, int nb_coin)
 {
 	if (coin == nb_coin)
 	{
@@ -84,7 +84,7 @@ void	move(t_game *game, int x_inc, int y_inc)
 		if (stock_move != '1' && stock_move != 'E')
 			move_player(game, x_inc, y_inc);
 		if (stock_move == 'E')
-			exit_test(game->collect, game->count_c);
+			exit_wwin(game->collect, game->count_c);
 	}
 }
 

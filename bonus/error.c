@@ -6,7 +6,7 @@
 /*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:49:31 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/20 14:08:30 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/01/21 12:15:38 by epraduro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,11 @@ int	checker_map_poss(t_game *game)
 	{
 		j = -1;
 		while (game->map[i][++j])
-			if (game->map[i][j] == 'C' || game->map[i][j] == 'P'
-				|| game->map[i][j] == 'E')
-				if (game->map[i][j + 1] == '1' && game->map[i][j - 1] == '1'
-					&& game->map[i + 1][j] == '1' && game->map[i - 1][j] == '1')
-					return (0);
+			if (game->map[i][j] != 'C' && game->map[i][j] != 'P'
+				&& game->map[i][j] != 'E' && game->map[i][j] != '0'
+					&& game->map[i][j] != '1' && game->map[i][j] != '\0'
+						&& game->map[i][j] != '\n' && game->map[i][j] != 'M')
+				return (0);
 		i++;
 	}
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:41:26 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/20 18:06:12 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/01/21 16:59:36 by epraduro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,10 +122,11 @@ void		load_map(t_game *game);
 
 /* move.c */
 
+void		ft_putnbr_fd(int n, int fd);
 void		move(t_game *game, int x_inc, int y_inc);
+void		exit_wwin(int coin, int nb_coin);
 void		move_player(t_game *game, int x_inc, int y_inc);
 int			key_hook(int keycode, void *game);
-int			exit_window(t_game *game);
 
 /* error_resolver.c */
 

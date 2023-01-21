@@ -6,9 +6,10 @@
 /*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:41:26 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/20 16:46:28 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/01/21 17:26:24 by epraduro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef UTILS_H
 # define UTILS_H
@@ -56,10 +57,12 @@ typedef struct s_image
 typedef struct s_bdd
 {
 	t_image		player;
+	t_image		player_l;
+	t_image		player_r;
 	t_image		wall;
 	t_image		exit;
 	t_image		floor;
-	t_image		enemy;
+	t_image		monster;
 	t_image		coin;
 }				t_bdd;
 
@@ -120,10 +123,6 @@ void		put_img_to_window(t_game *game, t_image image, int x, int y);
 void		load_img(t_game *game);
 void		load_map(t_game *game);
 
-/* window.c */
-
-t_window	new_window(t_game *game, int widht, int height, char *name);
-
 /* move.c */
 
 void		move(t_game *game, int x_inc, int y_inc);
@@ -141,7 +140,10 @@ int			path_poss(t_game *game, char **map_cop, int x, int y);
 
 /* main.c */
 
+t_window	new_window(t_game *game, int widht, int height, char *name);
 int			error(char *str);
+int			exit_window(t_game *game);
 void		start_game(char *fichier, t_game *game);
+int			main(int argc, char **argv);
 
 #endif

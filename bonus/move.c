@@ -6,7 +6,7 @@
 /*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 16:28:29 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/20 14:33:48 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/01/21 17:31:54 by epraduro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,18 +80,43 @@ char	*ft_itoa(int n)
 	return (res);
 }
 
+/* up = 13 || 126
+down = 1 || 125
+right = 2 || 124
+left = 0 || 123 */
+int	key_hook(int keycode, void *game)
+{
+	t_game	*key;
+
+	key = (t_game *) game;
+	if (keycode == 2 || keycode == 124)
+		move(key, 1, 0);
+	else if (keycode == 0 || keycode == 123)
+		move(key, -1, 0);
+	else if (keycode == 13 || keycode == 126)
+		move(key, 0, -1);
+	else if (keycode == 1 || keycode == 125)
+		move(key, 0, 1);
+	else if (keycode == 53)
+	{
+		write(1, "Vous avez quitté le jeu\n", 26);
+		exit(0);
+	}
+	return (1);
+}
+
 void	move_player(t_game *game, int x_inc, int y_inc)
 {
 	int	old_x;
 	int	old_y;
-	char *test;
+	char *nb_step_player;
 
 	game->nb_move++;
-	write(1, "nombre de pas du joueur :", 26);
-	test = ft_itoa(game->nb_move);
+	write(1, "Nombre de pas du joueur: ", 26);
+	nb_step_player = ft_itoa(game->nb_move);
 	put_img_to_window(game, game->bdd.wall, 0, 0);
-	mlx_string_put(game->mlx, game->window.reference, 0, 0, 52458, test);
-	free(test);
+	mlx_string_put(game->mlx, game->window.reference, 10, 10, 0x00FFFFFF, nb_step_player);
+	free(nb_step_player);
 	ft_putnbr_fd(game->nb_move, 1);
 	write(1, "\n", 1);
 	old_x = game->player.pos_x;
@@ -118,6 +143,11 @@ void	move(t_game *game, int x_inc, int y_inc)
 			game->collect++;
 		if (stock_move != '1' && stock_move != 'E')
 			move_player(game, x_inc, y_inc);
+		if (stock_move == 'M')
+		{
+			write(1, "Vous avez été tué par un ennemi !\n", 38);
+			exit(0);
+		}
 		if (stock_move == 'E')
 		{
 			if (game->collect == game->count_c)
@@ -129,36 +159,4 @@ void	move(t_game *game, int x_inc, int y_inc)
 				write(1, "Pas assez de coins pour fuir !\n", 32);
 		}
 	}
-}
-
-/* up = 13 || 126
-down = 1 || 125
-right = 2 || 124
-left = 0 || 123 */
-int	key_hook(int keycode, void *game)
-{
-	t_game	*key;
-
-	key = (t_game *) game;
-	if (keycode == 2 || keycode == 124)
-		move(key, 1, 0);
-	else if (keycode == 0 || keycode == 123)
-		move(key, -1, 0);
-	else if (keycode == 13 || keycode == 126)
-		move(key, 0, -1);
-	else if (keycode == 1 || keycode == 125)
-		move(key, 0, 1);
-	else if (keycode == 53)
-	{
-		write(1, "Vous avez quitté le jeu\n", 26);
-		exit(0);
-	}
-	return (1);
-}
-
-int	exit_window(t_game *game)
-{
-	mlx_destroy_window(game->mlx, game->window.reference);
-	write(1, "Vous avez fermé la fenêtre du jeu!\n", 38);
-	exit(0);
 }
