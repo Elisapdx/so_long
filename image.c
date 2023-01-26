@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:41:15 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/21 16:59:57 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/01/25 17:35:11 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	load_img(t_game *game)
 	game->bdd.player = ft_new_sprite(game->mlx, "./image_xpm/pacman_l.xpm");
 	game->bdd.floor = ft_new_sprite(game->mlx, "./image_xpm/floor.xpm");
 	game->bdd.wall = ft_new_sprite(game->mlx, "./image_xpm/wall.xpm");
-	game->bdd.coin = ft_new_sprite(game->mlx, "./image_xpm/coin.xpm");	
+	game->bdd.coin = ft_new_sprite(game->mlx, "./image_xpm/coin.xpm");
 	game->bdd.exit = ft_new_sprite(game->mlx, "./image_xpm/exit.xpm");
 }
 
@@ -50,11 +50,11 @@ void	load_map(t_game *game)
 	int	i;
 	int	j;
 
-	i = -1;
-	while (game->map[++i])
+	i = 0;
+	while (game->map[i])
 	{
-		j = -1;
-		while (game->map[i][++j])
+		j = 0;
+		while (game->map[i][j])
 		{
 			if (game->map[i][j] == '1')
 				put_img_to_window(game, game->bdd.wall, j * 40, i * 40);
@@ -65,10 +65,9 @@ void	load_map(t_game *game)
 			else if (game->map[i][j] == 'P')
 				set_player(game, j, i);
 			else if (game->map[i][j] == 'E')
-			{
-				put_img_to_window(game, game->bdd.floor, j * 40, i * 40);
 				put_img_to_window(game, game->bdd.exit, j * 40, i * 40);
-			}
+			j++;
 		}
+		i++;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:20:14 by epraduro          #+#    #+#             */
-/*   Updated: 2023/01/21 16:43:00 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/01/25 17:10:02 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,17 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	if (argc > 2)
-		return (error("usage ./so_long <map>\n"));
+		return (error("Error\n usage ./so_long <map>\n"));
 	game.map = read_map(argv[1], &game);
+	game.count_c = 0;
+	game.count_e = 0;
+	game.count_p = 0;
+	game.collect = 0;
 	if (!check_rect(&game) || !checker_line_next(&game))
-		return (error("map invalid\n"));
+		return (error("Error\n map invalid\n"));
 	if (!checker_map_poss(&game) || !resolver_map(&game))
-		return (error("map invalid ou inacesssible object"));
+		return (error("Error\n map invalid ou inacesssible object"));
 	if (!error_map(&game))
-		return (error("problem with objects in map"));
+		return (error("Error\n problem with objects in map"));
 	start_game(argv[1], &game);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:41:26 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/21 17:26:24 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/01/25 17:44:37 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,11 @@ char		*ft_strdup(const char *s1);
 char		**copy_map(t_game *game);
 int			resolver_map(t_game *game);
 int			path_poss(t_game *game, char **map_cop, int x, int y);
+
+/* file_utils.c */
+
+void	exit_wwin(int coin, int nb_coin);
+int	key_hook(int keycode, void *game);
 
 /* main.c */
 

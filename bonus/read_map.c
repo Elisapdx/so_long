@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:41:08 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/21 11:15:53 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/01/23 17:17:02 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,9 @@ char	**read_map(char *file, t_game *game)
 	int		i;
 
 	map = check_alloc_map(file, game);
-	if (map == NULL)
-		return (NULL);
 	fd = open(file, O_RDONLY);
 	i = 0;
-	while (i < game->line_count)
+	while (i < game->line_count + 1)
 	{
 		map[i] = get_next_line(fd);
 		i++;

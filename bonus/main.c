@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:20:14 by epraduro          #+#    #+#             */
-/*   Updated: 2023/01/21 17:04:09 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/01/25 17:40:34 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
+
 t_window	new_window(t_game *game, int widht, int height, char *name)
 {
 	t_window	window;
@@ -56,6 +57,10 @@ int	main(int argc, char **argv)
 	if (argc > 2)
 		return (error("usage ./so_long <map>\n"));
 	game.map = read_map(argv[1], &game);
+	game.count_c = 0;
+	game.count_e = 0;
+	game.count_p = 0;
+	game.collect = 0;
 	if (!check_rect(&game) || !checker_line_next(&game))
 		return (error("map invalid\n"));
 	if (!checker_map_poss(&game) || !resolver_map(&game))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:41:15 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/21 17:26:06 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/01/25 17:37:44 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	set_player(t_game *game, int x, int y)
 	game->player.pos_x = x;
 	game->player.pos_y = y;
 	put_img_to_window(game, game->bdd.floor, x * 40, y * 40);
-	put_img_to_window(game, game->bdd.player, x * 40, y * 40);
+	put_img_to_window(game, game->bdd.player_l, x * 40, y * 40);
 }
 
 t_image	ft_new_sprite(void *mlx, char *path)
@@ -39,7 +39,6 @@ void	put_img_to_window(t_game *game, t_image image, int x, int y)
 
 void	load_img(t_game *game)
 {
-	game->bdd.player = ft_new_sprite(game->mlx, "./image_xpm/pacman_l.xpm");
 	game->bdd.player_l = ft_new_sprite(game->mlx, "./image_xpm/pacman_l.xpm");
 	game->bdd.player_r = ft_new_sprite(game->mlx, "./image_xpm/pacman_r.xpm");
 	game->bdd.floor = ft_new_sprite(game->mlx, "./image_xpm/floor.xpm");
@@ -71,10 +70,7 @@ void	load_map(t_game *game)
 			else if (game->map[i][j] == 'M')
 				put_img_to_window(game, game->bdd.monster, j * 40, i * 40);
 			else if (game->map[i][j] == 'E')
-			{
-				put_img_to_window(game, game->bdd.floor, j * 40, i * 40);
 				put_img_to_window(game, game->bdd.exit, j * 40, i * 40);
-			}
 		}
 	}
 }
