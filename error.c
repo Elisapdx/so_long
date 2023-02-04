@@ -107,3 +107,4 @@ int	checker_map_poss(t_game *game)
 	}
 	return (1);
 }
+
