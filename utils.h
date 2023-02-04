@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
+/*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:41:26 by elisa             #+#    #+#             */
-/*   Updated: 2023/02/03 14:24:14 by elisa            ###   ########.fr       */
+/*   Updated: 2023/02/04 18:30:22 by epraduro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include "minilibx/mlx.h"
+# include <mlx.h>
 # include <unistd.h>
 # include "gnl/get_next_line_solong.h"
 
@@ -97,8 +97,6 @@ typedef struct s_game
 /* read_map.c */
 
 void		null_error(char *str);
-static int	linecount_map(char *file, t_game *game);
-static char	**check_alloc_map(char *file, t_game *game);
 char		**read_map(char *file, t_game *game);
 
 /* error.c */
@@ -138,7 +136,7 @@ int			path_poss2(t_game *game, char **map_cop, int x, int y);
 t_window	new_window(t_game *game, int widht, int height, char *name);
 int			error(char *str);
 int			exit_window(t_game *game);
-void		start_game(char *fichier, t_game *game);
+void		start_game(t_game *game);
 int			main(int argc, char **argv);
 
 /* verif_fichier.c */
@@ -146,6 +144,6 @@ int			main(int argc, char **argv);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			verif_fichier(char *fichier);
 int			free_double_tab(char **tab, int ret);
-int			chemin(t_game *game, char **map_cop, int x, int y);
+int			chemin(t_game *game, char **map_cop);
 
 #endif

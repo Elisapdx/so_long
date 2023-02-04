@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_resolver.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
+/*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 19:07:31 by epraduro          #+#    #+#             */
-/*   Updated: 2023/02/03 14:23:21 by elisa            ###   ########.fr       */
+/*   Updated: 2023/02/04 18:25:07 by epraduro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	resolver_map(t_game *game)
 		game->x_cop = 0;
 		while (game->map[game->y_cop][game->x_cop])
 		{
-			chemin(game, map_cop, game->x_cop, game->y_cop);
+			chemin(game, map_cop);
 			game->x_cop++;
 		}
 		game->y_cop++;

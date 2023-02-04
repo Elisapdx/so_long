@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: elisa <elisa@student.42.fr>                +#+  +:+       +#+         #
+#    By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/04 11:24:15 by elisa             #+#    #+#              #
-#    Updated: 2023/02/03 14:19:05 by elisa            ###   ########.fr        #
+#    Updated: 2023/02/04 18:15:29 by epraduro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,20 +18,21 @@ SRCS_BONUS = bonus/main.c bonus/image.c bonus/read_map.c bonus/file_utils.c\
 	gnl/get_next_line_solong.c gnl/get_next_line_utils_solong.c
 
 NAME= so_long
-NAME_BONUS= so_long_bonus 
+NAME_BONUS= so_long_bonus
+CFLAGS = -Wall -Wextra -Werror
 OBJS=$(SRCS:.c=.o)
 OBJS_BONUS=$(SRCS_BONUS:.c=.o)
 
 all:$(NAME)
 
 %.o: %.c
-	gcc $(CFLAGS) -c $< -o $@
+	gcc $(CFLAGS) -Imlx -c $< -o $@
 
 $(NAME):$(OBJS)
-	gcc $(CFLAGS) $(OBJS)  -framework OpenGL -framework AppKit libmlx.a -o $(NAME)
+	gcc $(CFLAGS) $(OBJS) -lmlx  -framework OpenGL -framework AppKit -o $(NAME)
 	
 bonus:$(OBJS_BONUS)
-	gcc $(CFLAGS) $(OBJS_BONUS) -framework OpenGL -framework AppKit libmlx.a -o $(NAME_BONUS)
+	gcc $(CFLAGS) $(OBJS_BONUS) -lmlx -framework OpenGL -framework AppKit -o $(NAME_BONUS)
 	
 clean:
 	rm -f $(OBJS) $(OBJS_BONUS)

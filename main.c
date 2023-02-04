@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
+/*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:20:14 by epraduro          #+#    #+#             */
-/*   Updated: 2023/02/03 12:54:58 by elisa            ###   ########.fr       */
+/*   Updated: 2023/02/04 18:30:12 by epraduro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	exit_window(t_game *game)
 	exit(0);
 }
 
-void	start_game(char *fichier, t_game *game)
+void	start_game(t_game *game)
 {
 	game->mlx = mlx_init();
 	game->window = new_window(game, game->colone_count * 40,
@@ -75,5 +75,5 @@ int	main(int argc, char **argv)
 		return (error("Error\n map invalid ou inacesssible object"));
 	if (!error_map(&game))
 		return (error("Error\n problem with objects in map"));
-	start_game(argv[1], &game);
+	start_game(&game);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif_fichier.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
+/*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:37:41 by elisa             #+#    #+#             */
-/*   Updated: 2023/02/03 14:23:33 by elisa            ###   ########.fr       */
+/*   Updated: 2023/02/04 18:24:14 by epraduro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	free_double_tab(char **tab, int ret)
 	return (ret);
 }
 
-int	chemin(t_game *game, char **map_cop, int x, int y)
+int	chemin(t_game *game, char **map_cop)
 {
 	if (game->map[game->y_cop][game->x_cop] == 'E')
 	{
@@ -72,4 +72,5 @@ int	chemin(t_game *game, char **map_cop, int x, int y)
 			return (free_double_tab(map_cop, 0));
 		free_double_tab(map_cop, 0);
 	}
+	return 0;
 }
