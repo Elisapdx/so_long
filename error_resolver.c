@@ -6,23 +6,11 @@
 /*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 19:07:31 by epraduro          #+#    #+#             */
-/*   Updated: 2023/01/25 17:21:09 by elisa            ###   ########.fr       */
+/*   Updated: 2023/02/03 14:23:21 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-
-int	free_double_tab(char **tab, int ret)
-{
-	int	i;
-
-	i = -1;
-	while (tab[++i])
-		free(tab[i]);
-	free(tab);
-	tab = NULL;
-	return (ret);
-}
 
 char	*ft_strdup(const char *s1)
 {
@@ -66,14 +54,7 @@ int	resolver_map(t_game *game)
 		game->x_cop = 0;
 		while (game->map[game->y_cop][game->x_cop])
 		{
-			if (game->map[game->y_cop][game->x_cop] == 'C'
-			|| game->map[game->y_cop][game->x_cop] == 'P')
-			{
-				map_cop = copy_map(game);
-				if (!path_poss(game, map_cop, game->x_cop, game->y_cop))
-					return (free_double_tab(map_cop, 0));
-				free_double_tab(map_cop, 0);
-			}
+			chemin(game, map_cop, game->x_cop, game->y_cop);
 			game->x_cop++;
 		}
 		game->y_cop++;
@@ -83,7 +64,30 @@ int	resolver_map(t_game *game)
 
 int	path_poss(t_game *game, char **map_cop, int x, int y)
 {
-	if (game->map[y][x] == 'E')
+	if (game->map[y][x] == 'P')
+		return (1);
+	if (game->map[y][x] == 'E' || game->map[y][x] == '1'
+		|| map_cop[y][x] == '1')
+		return (0);
+	map_cop[y][x] = '1';
+	if (x > 0)
+		if (path_poss(game, map_cop, x - 1, y))
+			return (1);
+	if (map_cop[y][x + 1])
+		if (path_poss(game, map_cop, x + 1, y))
+			return (1);
+	if (y > 0)
+		if (path_poss(game, map_cop, x, y - 1))
+			return (1);
+	if (map_cop[y + 1][x] != '\n')
+		if (path_poss(game, map_cop, x, y + 1))
+			return (1);
+	return (0);
+}
+
+int	path_poss2(t_game *game, char **map_cop, int x, int y)
+{
+	if (game->map[y][x] == 'P')
 		return (1);
 	if (game->map[y][x] == '1' || map_cop[y][x] == '1')
 		return (0);

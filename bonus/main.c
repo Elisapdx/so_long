@@ -6,7 +6,7 @@
 /*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:20:14 by epraduro          #+#    #+#             */
-/*   Updated: 2023/01/25 17:40:34 by elisa            ###   ########.fr       */
+/*   Updated: 2023/01/27 10:45:42 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ int	main(int argc, char **argv)
 	game.count_p = 0;
 	game.collect = 0;
 	if (!check_rect(&game) || !checker_line_next(&game))
-		return (error("map invalid\n"));
+		return (error("Error\nMap invalid\n"));
 	if (!checker_map_poss(&game) || !resolver_map(&game))
-		return (error("map invalid ou inacesssible object"));
+		return (error("Error\nMap invalid ou inacesssible object"));
 	if (!error_map(&game))
-		return (error("problem with objects in map"));
+		return (error("Error\nProblem with objects in map"));
 	start_game(argv[1], &game);
 }

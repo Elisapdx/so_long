@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:41:26 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/21 16:59:36 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/02/03 14:24:14 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ typedef struct s_game
 	int			count_c;
 	int			count_e;
 	int			collect;
-	int			stock_move;
 	int			line_count;
 	int			colone_count;
 	int			limit_x;
@@ -89,8 +88,6 @@ typedef struct s_game
 	int			x_cop;
 	int			y_cop;
 	t_window	window;
-	t_image		sprite;
-	t_vector	sprite_position;
 	t_bdd		bdd;
 	t_player	player;
 }				t_game;
@@ -123,18 +120,18 @@ void		load_map(t_game *game);
 /* move.c */
 
 void		ft_putnbr_fd(int n, int fd);
-void		move(t_game *game, int x_inc, int y_inc);
-void		exit_wwin(int coin, int nb_coin);
 void		move_player(t_game *game, int x_inc, int y_inc);
+void		exit_wwin(int coin, int nb_coin);
+void		move(t_game *game, int x_inc, int y_inc);
 int			key_hook(int keycode, void *game);
 
 /* error_resolver.c */
 
-int			free_double_tab(char **tab, int ret);
 char		*ft_strdup(const char *s1);
 char		**copy_map(t_game *game);
 int			resolver_map(t_game *game);
 int			path_poss(t_game *game, char **map_cop, int x, int y);
+int			path_poss2(t_game *game, char **map_cop, int x, int y);
 
 /* main.c */
 
@@ -143,5 +140,12 @@ int			error(char *str);
 int			exit_window(t_game *game);
 void		start_game(char *fichier, t_game *game);
 int			main(int argc, char **argv);
+
+/* verif_fichier.c */
+
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
+int			verif_fichier(char *fichier);
+int			free_double_tab(char **tab, int ret);
+int			chemin(t_game *game, char **map_cop, int x, int y);
 
 #endif

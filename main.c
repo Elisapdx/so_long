@@ -6,7 +6,7 @@
 /*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:20:14 by epraduro          #+#    #+#             */
-/*   Updated: 2023/01/25 17:10:02 by elisa            ###   ########.fr       */
+/*   Updated: 2023/02/03 12:54:58 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,15 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	if (argc > 2)
-		return (error("Error\n usage ./so_long <map>\n"));
+	{
+		write(1, "Error\n", 7);
+		return (error("usage ./so_long <map>\n"));
+	}
+	if (!verif_fichier(argv[1]))
+	{
+		write(1, "Error\n", 7);
+		return (error("file extension is not .ber"));
+	}
 	game.map = read_map(argv[1], &game);
 	game.count_c = 0;
 	game.count_e = 0;

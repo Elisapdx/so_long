@@ -6,10 +6,9 @@
 /*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:41:26 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/25 17:44:37 by elisa            ###   ########.fr       */
+/*   Updated: 2023/02/03 12:43:29 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef UTILS_H
 # define UTILS_H
@@ -125,10 +124,11 @@ void		load_map(t_game *game);
 
 /* move.c */
 
-void		move(t_game *game, int x_inc, int y_inc);
+void		ft_putnbr_fd(int n, int fd);
+static int	ft_count(long n);
+char		*ft_itoa(int n);
 void		move_player(t_game *game, int x_inc, int y_inc);
-int			key_hook(int keycode, void *game);
-int			exit_window(t_game *game);
+void		move(t_game *game, int x_inc, int y_inc);
 
 /* error_resolver.c */
 
@@ -140,8 +140,10 @@ int			path_poss(t_game *game, char **map_cop, int x, int y);
 
 /* file_utils.c */
 
-void	exit_wwin(int coin, int nb_coin);
-int	key_hook(int keycode, void *game);
+void		exit_wwin(int coin, int nb_coin);
+int			key_hook(int keycode, void *game);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
+int			verif_fichier(char *fichier);
 
 /* main.c */
 
