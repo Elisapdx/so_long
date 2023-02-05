@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:41:08 by elisa             #+#    #+#             */
-/*   Updated: 2023/02/04 18:29:51 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/02/05 13:24:03 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ static char	**check_alloc_map(char *file, t_game *game)
 	line_count = linecount_map(file);
 	game->line_count = line_count;
 	if (line_count <= 0)
-		null_error("Error\nopen or reading error, the file may not exist");
+		null_error("Error\n Open or reading error, the file may not exist");
 	map = malloc(sizeof(char *) * (line_count + 1));
 	if (map == NULL)
-		null_error("Error\nmalloc error !");
+		null_error("Error\n Malloc error !");
 	return (map);
 }
 

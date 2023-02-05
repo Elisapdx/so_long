@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+         #
+#    By: elisa <elisa@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/04 11:24:15 by elisa             #+#    #+#              #
-#    Updated: 2023/02/04 18:15:29 by epraduro         ###   ########.fr        #
+#    Updated: 2023/02/05 13:09:58 by elisa            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,13 +26,13 @@ OBJS_BONUS=$(SRCS_BONUS:.c=.o)
 all:$(NAME)
 
 %.o: %.c
-	gcc $(CFLAGS) -Imlx -c $< -o $@
+	gcc $(CFLAGS) -c $< -o $@
 
 $(NAME):$(OBJS)
-	gcc $(CFLAGS) $(OBJS) -lmlx  -framework OpenGL -framework AppKit -o $(NAME)
+	gcc $(CFLAGS) $(OBJS) -framework OpenGL -framework AppKit libmlx.a -o $(NAME)
 	
 bonus:$(OBJS_BONUS)
-	gcc $(CFLAGS) $(OBJS_BONUS) -lmlx -framework OpenGL -framework AppKit -o $(NAME_BONUS)
+	gcc $(CFLAGS) $(OBJS_BONUS) -framework OpenGL -framework AppKit libmlx.a -o $(NAME_BONUS)
 	
 clean:
 	rm -f $(OBJS) $(OBJS_BONUS)

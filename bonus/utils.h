@@ -6,7 +6,7 @@
 /*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:41:26 by elisa             #+#    #+#             */
-/*   Updated: 2023/02/03 12:43:29 by elisa            ###   ########.fr       */
+/*   Updated: 2023/02/05 13:52:39 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,6 @@ typedef struct s_game
 /* read_map.c */
 
 void		null_error(char *str);
-static int	linecount_map(char *file, t_game *game);
-static char	**check_alloc_map(char *file, t_game *game);
 char		**read_map(char *file, t_game *game);
 
 /* error.c */
@@ -125,7 +123,6 @@ void		load_map(t_game *game);
 /* move.c */
 
 void		ft_putnbr_fd(int n, int fd);
-static int	ft_count(long n);
 char		*ft_itoa(int n);
 void		move_player(t_game *game, int x_inc, int y_inc);
 void		move(t_game *game, int x_inc, int y_inc);
@@ -150,7 +147,7 @@ int			verif_fichier(char *fichier);
 t_window	new_window(t_game *game, int widht, int height, char *name);
 int			error(char *str);
 int			exit_window(t_game *game);
-void		start_game(char *fichier, t_game *game);
+void		start_game(t_game *game);
 int			main(int argc, char **argv);
 
 #endif

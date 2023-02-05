@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:49:31 by elisa             #+#    #+#             */
-/*   Updated: 2023/02/04 18:23:59 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/02/05 14:23:49 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	checker_map(t_game *game, int ard)
 
 int	check_rect(t_game *game)
 {
-	int	i;
+	int		i;
 	size_t	len;
 
 	i = 0;

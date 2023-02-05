@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:20:14 by epraduro          #+#    #+#             */
-/*   Updated: 2023/02/04 18:30:12 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/02/05 13:50:19 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,21 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	if (argc > 2)
-	{
-		write(1, "Error\n", 7);
-		return (error("usage ./so_long <map>\n"));
-	}
+		return (error("Error\n Usage ./so_long <map>\n"));
 	if (!verif_fichier(argv[1]))
-	{
-		write(1, "Error\n", 7);
-		return (error("file extension is not .ber"));
-	}
+		return (error("Error\n File extension is not .ber or file not exist"));
 	game.map = read_map(argv[1], &game);
 	game.count_c = 0;
 	game.count_e = 0;
 	game.count_p = 0;
 	game.collect = 0;
 	if (!check_rect(&game) || !checker_line_next(&game))
-		return (error("Error\n map invalid\n"));
+		return (error("Error\n Map invalid, not a rectangle or\
+		one or more lines are not the same size\n"));
 	if (!checker_map_poss(&game) || !resolver_map(&game))
-		return (error("Error\n map invalid ou inacesssible object"));
+		return (error("Error\n Map invalid, character invalid\
+		or inacesssible object"));
 	if (!error_map(&game))
-		return (error("Error\n problem with objects in map"));
+		return (error("Error\n Problem with objects in map"));
 	start_game(&game);
 }

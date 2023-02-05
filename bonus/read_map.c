@@ -6,7 +6,7 @@
 /*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:41:08 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/23 17:17:02 by elisa            ###   ########.fr       */
+/*   Updated: 2023/02/05 13:53:19 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	null_error(char *str)
 	exit(1);
 }
 
-static int	linecount_map(char *file, t_game *game)
+static int	linecount_map(char *file)
 {
 	int		line_count;
 	int		fd;
@@ -53,7 +53,7 @@ static char	**check_alloc_map(char *file, t_game *game)
 	char	**map;
 	int		line_count;
 
-	line_count = linecount_map(file, game);
+	line_count = linecount_map(file);
 	game->line_count = line_count;
 	if (line_count <= 0)
 		null_error("open or reading error, the file may not exist");

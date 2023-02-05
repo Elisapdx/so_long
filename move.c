@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 16:28:29 by elisa             #+#    #+#             */
-/*   Updated: 2023/02/04 18:14:02 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/02/05 13:23:27 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ void	exit_wwin(int coin, int nb_coin)
 {
 	if (coin == nb_coin)
 	{
-		write(1, "Vous êtes sorti du jeu\n", 25);
+		write(1, "Vous avez gagné !\n", 20);
 		exit(0);
 	}
 	else
-		write(1, "Pas assez de coins pour fuir !\n", 32);
+		write(1, "Vous n'avez assez collecté pour fuir !\n", 41);
 }
 
 void	move(t_game *game, int x_inc, int y_inc)
@@ -107,7 +107,7 @@ int	key_hook(int keycode, void *game)
 		move(key, 0, 1);
 	else if (keycode == 53)
 	{
-		write(1, "Vous avez quitté le jeu\n", 26);
+		write(1, "Vous avez quitté le jeu via echap \n", 37);
 		exit(0);
 	}
 	return (1);

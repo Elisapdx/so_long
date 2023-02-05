@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif_fichier.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epraduro <epraduro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:37:41 by elisa             #+#    #+#             */
-/*   Updated: 2023/02/04 18:24:14 by epraduro         ###   ########.fr       */
+/*   Updated: 2023/02/05 12:44:11 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,26 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 int	verif_fichier(char *fichier)
 {
-	int		len;
-	char	*extens;
+	size_t	len;
+	int		fd;
 
 	len = ft_strlen(fichier);
-	if (len < 4)
+	if (open(fichier, O_DIRECTORY) >= 0)
+	{
+		fd = open(fichier, O_DIRECTORY);
+		close(fd);
 		return (0);
-	extens = fichier + (len - 4);
-	return (!ft_strncmp(".ber", extens, 4));
+	}
+	else
+	{
+		fd = open(fichier, O_RDONLY);
+		close (fd);
+		if ((fichier[len - 4] != '.' && fichier[len - 3] != 'b'
+				&& fichier[len - 2] != 'e'
+				&& fichier[len - 1] != 'r') || fd < 0)
+			return (0);
+		return (1);
+	}
 }
 
 int	free_double_tab(char **tab, int ret)
@@ -72,5 +84,5 @@ int	chemin(t_game *game, char **map_cop)
 			return (free_double_tab(map_cop, 0));
 		free_double_tab(map_cop, 0);
 	}
-	return 0;
+	return (0);
 }
