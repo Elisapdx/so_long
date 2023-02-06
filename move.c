@@ -6,7 +6,7 @@
 /*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 16:28:29 by elisa             #+#    #+#             */
-/*   Updated: 2023/02/05 13:23:27 by elisa            ###   ########.fr       */
+/*   Updated: 2023/02/06 14:44:43 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,26 @@ void	move_player(t_game *game, int x_inc, int y_inc)
 	old_y = game->player.pos_y;
 	game->player.pos_x += x_inc;
 	game->player.pos_y += y_inc;
+	if (old_x == game->coor_exit.x && old_y == game->coor_exit.y)
+		put_img_to_window(game, game->bdd.exit, old_x * 40, old_y * 40);
+	else
+		put_img_to_window(game, game->bdd.floor, old_x * 40, old_y * 40);
 	put_img_to_window(game, game->bdd.player, game->player.pos_x * 40,
 		game->player.pos_y * 40);
-	put_img_to_window(game, game->bdd.floor, old_x * 40, old_y * 40);
 }
 
-void	exit_wwin(int coin, int nb_coin)
+void	exit_wwin(t_game *game, int x_inc, int y_inc)
 {
-	if (coin == nb_coin)
+	if (game->collect == game->count_c)
 	{
 		write(1, "Vous avez gagné !\n", 20);
 		exit(0);
 	}
 	else
+	{
+		move_player(game, x_inc, y_inc);
 		write(1, "Vous n'avez assez collecté pour fuir !\n", 41);
+	}
 }
 
 void	move(t_game *game, int x_inc, int y_inc)
@@ -84,7 +90,7 @@ void	move(t_game *game, int x_inc, int y_inc)
 		if (stock_move != '1' && stock_move != 'E')
 			move_player(game, x_inc, y_inc);
 		if (stock_move == 'E')
-			exit_wwin(game->collect, game->count_c);
+			exit_wwin(game, x_inc, y_inc);
 	}
 }
 

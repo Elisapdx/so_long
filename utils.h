@@ -6,7 +6,7 @@
 /*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:41:26 by elisa             #+#    #+#             */
-/*   Updated: 2023/02/05 13:08:37 by elisa            ###   ########.fr       */
+/*   Updated: 2023/02/06 15:07:56 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ typedef struct s_game
 	int			nb_move;
 	int			x_cop;
 	int			y_cop;
+	t_vector	coor_exit;
 	t_window	window;
 	t_bdd		bdd;
 	t_player	player;
@@ -119,7 +120,6 @@ void		load_map(t_game *game);
 
 void		ft_putnbr_fd(int n, int fd);
 void		move_player(t_game *game, int x_inc, int y_inc);
-void		exit_wwin(int coin, int nb_coin);
 void		move(t_game *game, int x_inc, int y_inc);
 int			key_hook(int keycode, void *game);
 
@@ -129,7 +129,6 @@ char		*ft_strdup(const char *s1);
 char		**copy_map(t_game *game);
 int			resolver_map(t_game *game);
 int			path_poss(t_game *game, char **map_cop, int x, int y);
-int			path_poss2(t_game *game, char **map_cop, int x, int y);
 
 /* main.c */
 
@@ -141,9 +140,7 @@ int			main(int argc, char **argv);
 
 /* verif_fichier.c */
 
-int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			verif_fichier(char *fichier);
 int			free_double_tab(char **tab, int ret);
-int			chemin(t_game *game, char **map_cop);
 
 #endif

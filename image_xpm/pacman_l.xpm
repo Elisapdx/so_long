@@ -220,7 +220,7 @@ static char *result[] = {
 "eX c #FEEC82",
 "rX c #FFF187",
 "tX c #FFE190",
-"yX c #091E28",
+"yX c None",
 /* pixels */
 "yXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyX",
 "yXyXyXS.Z.Z.S.yXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyX",

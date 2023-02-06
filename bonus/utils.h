@@ -6,7 +6,7 @@
 /*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:41:26 by elisa             #+#    #+#             */
-/*   Updated: 2023/02/05 13:52:39 by elisa            ###   ########.fr       */
+/*   Updated: 2023/02/06 17:52:25 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct s_game
 	int			nb_move;
 	int			x_cop;
 	int			y_cop;
+	t_vector	coor_exit;
 	t_window	window;
 	t_image		sprite;
 	t_vector	sprite_position;
@@ -137,9 +138,10 @@ int			path_poss(t_game *game, char **map_cop, int x, int y);
 
 /* file_utils.c */
 
-void		exit_wwin(int coin, int nb_coin);
+void		set_coor_exit(t_game *game, int x, int y);
+void		aff_nb_steps(t_game *game);
+void		exit_wwin(t_game *game, int x_inc, int y_inc);
 int			key_hook(int keycode, void *game);
-int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			verif_fichier(char *fichier);
 
 /* main.c */

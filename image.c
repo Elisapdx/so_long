@@ -6,7 +6,7 @@
 /*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:41:15 by elisa             #+#    #+#             */
-/*   Updated: 2023/02/05 12:19:12 by elisa            ###   ########.fr       */
+/*   Updated: 2023/02/06 17:43:05 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ void	load_map(t_game *game)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (game->map[i])
+	i = -1;
+	while (game->map[++i])
 	{
-		j = 0;
-		while (game->map[i][j])
+		j = -1;
+		while (game->map[i][++j])
 		{
 			if (game->map[i][j] == '1')
 				put_img_to_window(game, game->bdd.wall, j * 40, i * 40);
@@ -65,9 +65,11 @@ void	load_map(t_game *game)
 			else if (game->map[i][j] == 'P')
 				set_player(game, j, i);
 			else if (game->map[i][j] == 'E')
+			{
+				game->coor_exit.x = j;
+				game->coor_exit.y = i;
 				put_img_to_window(game, game->bdd.exit, j * 40, i * 40);
-			j++;
+			}
 		}
-		i++;
 	}
 }

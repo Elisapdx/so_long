@@ -6,21 +6,46 @@
 /*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 17:42:21 by elisa             #+#    #+#             */
-/*   Updated: 2023/02/03 12:43:48 by elisa            ###   ########.fr       */
+/*   Updated: 2023/02/06 17:51:57 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-void	exit_wwin(int coin, int nb_coin)
+void	set_coor_exit(t_game *game, int x, int y)
 {
-	if (coin == nb_coin)
+	game->coor_exit.x = x;
+	game->coor_exit.y = y;
+	put_img_to_window(game, game->bdd.exit, x * 40, y * 40);
+}
+
+void	aff_nb_steps(t_game *game)
+{
+	char	*nb_step_player;
+
+	nb_step_player = ft_itoa(game->nb_move);
+	put_img_to_window(game, game->bdd.wall, 0, 0);
+	put_img_to_window(game, game->bdd.wall, 40, 0);
+	put_img_to_window(game, game->bdd.wall, 80, 0);
+	mlx_string_put(game->mlx, game->window.reference,
+		20, 20, 0x00FFFFFF, "nb pas: ");
+	mlx_string_put(game->mlx, game->window.reference,
+		75, 20, 0x00FFFFFF, nb_step_player);
+	free(nb_step_player);
+}
+
+void	exit_wwin(t_game *game, int x_inc, int y_inc)
+{
+	if (game->collect == game->count_c)
 	{
-		write(1, "Vous êtes sorti du jeu\n", 25);
+		write(1, "Vous avez gagné !\n", 20);
 		exit(0);
 	}
 	else
-		write(1, "Pas assez de coins pour fuir !\n", 32);
+	{
+		move_player(game, x_inc, y_inc);
+		write(1, "Vous n'avez assez collecté pour fuir !\n", 41);
+	}
 }
 
 /* up = 13 || 126
@@ -48,34 +73,26 @@ int	key_hook(int keycode, void *game)
 	return (1);
 }
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-	unsigned int	i;
-	int				b;
-	unsigned char	*s;
-	unsigned char	*d;
-
-	i = 0;
-	b = 0;
-	s = (unsigned char *)s1;
-	d = (unsigned char *)s2;
-	while ((s[i] || d[i]) && b == 0 && i < n)
-	{
-		if (s[i] != d[i])
-			b = s[i] - d[i];
-		i++;
-	}
-	return (b);
-}
-
 int	verif_fichier(char *fichier)
 {
-	int		len;
-	char	*extens;
+	size_t	len;
+	int		fd;
 
 	len = ft_strlen(fichier);
-	if (len < 4)
+	if (open(fichier, O_DIRECTORY) >= 0)
+	{
+		fd = open(fichier, O_DIRECTORY);
+		close(fd);
 		return (0);
-	extens = fichier + (len - 4);
-	return (!ft_strncmp(".ber", extens, 4));
+	}
+	else
+	{
+		fd = open(fichier, O_RDONLY);
+		close (fd);
+		if ((fichier[len - 4] != '.' && fichier[len - 3] != 'b'
+				&& fichier[len - 2] != 'e'
+				&& fichier[len - 1] != 'r') || fd < 0)
+			return (0);
+		return (1);
+	}
 }

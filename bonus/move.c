@@ -6,7 +6,7 @@
 /*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 16:28:29 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/25 17:43:08 by elisa            ###   ########.fr       */
+/*   Updated: 2023/02/06 17:51:46 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,29 +84,23 @@ void	move_player(t_game *game, int x_inc, int y_inc)
 {
 	int		old_x;
 	int		old_y;
-	char	*nb_step_player;
 
 	game->nb_move++;
-	nb_step_player = ft_itoa(game->nb_move);
-	put_img_to_window(game, game->bdd.wall, 0, 0);
-	put_img_to_window(game, game->bdd.wall, 40, 0);
-	put_img_to_window(game, game->bdd.wall, 80, 0);
-	mlx_string_put(game->mlx, game->window.reference,
-		20, 20, 0x00FFFFFF, "nb pas: ");
-	mlx_string_put(game->mlx, game->window.reference,
-		75, 20, 0x00FFFFFF, nb_step_player);
-	free(nb_step_player);
+	aff_nb_steps(game);
 	old_x = game->player.pos_x;
 	old_y = game->player.pos_y;
 	game->player.pos_x += x_inc;
 	game->player.pos_y += y_inc;
+	if (old_x == game->coor_exit.x && old_y == game->coor_exit.y)
+		put_img_to_window(game, game->bdd.exit, old_x * 40, old_y * 40);
+	else
+		put_img_to_window(game, game->bdd.floor, old_x * 40, old_y * 40);
 	if (x_inc == 1 || y_inc == -1)
 		put_img_to_window(game, game->bdd.player_r, game->player.pos_x * 40,
 			game->player.pos_y * 40);
 	if (x_inc == -1 || y_inc == 1)
 		put_img_to_window(game, game->bdd.player_l, game->player.pos_x * 40,
 			game->player.pos_y * 40);
-	put_img_to_window(game, game->bdd.floor, old_x * 40, old_y * 40);
 }
 
 void	move(t_game *game, int x_inc, int y_inc)
@@ -134,6 +128,6 @@ void	move(t_game *game, int x_inc, int y_inc)
 			exit(0);
 		}
 		if (stock_move == 'E')
-			exit_wwin(game->collect, game->count_c);
+			exit_wwin(game, x_inc, y_inc);
 	}
 }

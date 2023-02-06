@@ -6,7 +6,7 @@
 /*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:41:08 by elisa             #+#    #+#             */
-/*   Updated: 2023/02/05 13:24:03 by elisa            ###   ########.fr       */
+/*   Updated: 2023/02/06 17:43:35 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,20 @@ void	null_error(char *str)
 	while (str[++i])
 		write(1, &str[i], 1);
 	exit(1);
+}
+
+int	file_empty(char *file)
+{
+	int		fd;
+	char	c;
+
+	fd = open(file, O_RDONLY);
+	if (!fd)
+		return (0);
+	read(fd, &c, 1);
+	if (c == '\0')
+		return (0);
+	return (1);
 }
 
 static int	linecount_map(char *file)
@@ -55,8 +69,8 @@ static char	**check_alloc_map(char *file, t_game *game)
 
 	line_count = linecount_map(file);
 	game->line_count = line_count;
-	if (line_count <= 0)
-		null_error("Error\n Open or reading error, the file may not exist");
+	if (!file_empty(file))
+		null_error("Error\n file empty or not exist");
 	map = malloc(sizeof(char *) * (line_count + 1));
 	if (map == NULL)
 		null_error("Error\n Malloc error !");

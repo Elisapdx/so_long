@@ -6,7 +6,7 @@
 /*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:41:15 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/25 17:37:44 by elisa            ###   ########.fr       */
+/*   Updated: 2023/02/06 17:50:02 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	load_map(t_game *game)
 			else if (game->map[i][j] == 'M')
 				put_img_to_window(game, game->bdd.monster, j * 40, i * 40);
 			else if (game->map[i][j] == 'E')
-				put_img_to_window(game, game->bdd.exit, j * 40, i * 40);
+				set_coor_exit(game, j, i);
 		}
 	}
 }

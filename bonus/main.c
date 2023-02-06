@@ -6,7 +6,7 @@
 /*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:20:14 by epraduro          #+#    #+#             */
-/*   Updated: 2023/02/05 14:22:44 by elisa            ###   ########.fr       */
+/*   Updated: 2023/02/06 15:17:52 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ int	main(int argc, char **argv)
 	game.count_p = 0;
 	game.collect = 0;
 	if (!check_rect(&game) || !checker_line_next(&game))
-		return (error("Error\n Map invalid, not a rectangle or\
-		one or more lines are not the same size\n"));
+		return (error("Error\n Map invalid, not a rectangle or, \
+one or more lines are not the same size"));
 	if (!checker_map_poss(&game) || !resolver_map(&game))
-		return (error("Error\n Map invalid, character invalid\
-		or inacesssible object"));
+		return (error("Error\n Map invalid because of character invalid, \
+or inacesssible object"));
 	if (!error_map(&game))
 		return (error("Error\n Problem with objects in map"));
 	start_game(&game);
