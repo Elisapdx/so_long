@@ -6,7 +6,7 @@
 /*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 16:28:29 by elisa             #+#    #+#             */
-/*   Updated: 2023/02/06 14:44:43 by elisa            ###   ########.fr       */
+/*   Updated: 2023/02/07 17:15:37 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	exit_wwin(t_game *game, int x_inc, int y_inc)
 	else
 	{
 		move_player(game, x_inc, y_inc);
-		write(1, "Vous n'avez assez collecté pour fuir !\n", 41);
+		write(1, "Vous n'avez pas assez collecté pour fuir !\n", 41);
 	}
 }
 

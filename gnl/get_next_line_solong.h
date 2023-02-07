@@ -6,7 +6,7 @@
 /*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 12:27:42 by elisa             #+#    #+#             */
-/*   Updated: 2023/01/15 17:55:25 by elisa            ###   ########.fr       */
+/*   Updated: 2023/02/07 17:15:58 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdio.h>
 # include <string.h>
 
-#define BUFFER_SIZE 1
+# define BUFFER_SIZE 1
 
 char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);

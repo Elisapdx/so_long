@@ -6,7 +6,7 @@
 /*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:49:31 by elisa             #+#    #+#             */
-/*   Updated: 2023/02/05 14:23:49 by elisa            ###   ########.fr       */
+/*   Updated: 2023/02/07 14:54:52 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	checker_map(t_game *game, int ard)
 	int	i;
 
 	i = 0;
+	if (!game->map[ard])
+		return (0);
 	while (game->map[ard][i] && game->map[ard][i] != '\n')
 	{
 		if (game->map[ard][i] != '1')

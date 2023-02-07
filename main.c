@@ -6,7 +6,7 @@
 /*   By: elisa <elisa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:20:14 by epraduro          #+#    #+#             */
-/*   Updated: 2023/02/06 15:16:12 by elisa            ###   ########.fr       */
+/*   Updated: 2023/02/07 17:05:02 by elisa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	if (argc > 2)
+	if (argc != 2)
 		return (error("Error\n Usage ./so_long <map>\n"));
 	if (!verif_fichier(argv[1]))
 		return (error("Error\n File extension is not .ber or file not exist"));
